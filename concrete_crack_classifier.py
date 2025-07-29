@@ -10,6 +10,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.neural_network import MLPClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
 
 # Parameters
 img_size = 128
@@ -82,6 +84,20 @@ def train_ann(X_train, y_train):
     ann.fit(X_train, y_train)
     return ann
 
+def train_naive_bayes(X_train, y_train):
+    """Train Naive Bayes classifier"""
+    print("\nTraining Naive Bayes classifier...")
+    nb = GaussianNB()
+    nb.fit(X_train, y_train)
+    return nb
+
+def train_knn(X_train, y_train):
+    """Train KNN classifier"""
+    print("\nTraining KNN classifier...")
+    knn = KNeighborsClassifier(n_neighbors=5, weights='uniform')
+    knn.fit(X_train, y_train)
+    return knn
+
 def plot_confusion_matrix(y_true, y_pred, title):
     """Plot confusion matrix"""
     cm = confusion_matrix(y_true, y_pred)
@@ -123,5 +139,23 @@ if __name__ == "__main__":
     print("\nANN Classification Report:")
     print(classification_report(y_test, ann_predictions, target_names=classes))
     plot_confusion_matrix(y_test, ann_predictions, "ANN Confusion Matrix")
+
+    # Train and evaluate Naive Bayes
+    print("\n=== Naive Bayes Classification ===")
+    nb_model = train_naive_bayes(X_train, y_train)
+    nb_predictions = nb_model.predict(X_test)
+    
+    print("\nNaive Bayes Classification Report:")
+    print(classification_report(y_test, nb_predictions, target_names=classes))
+    plot_confusion_matrix(y_test, nb_predictions, "Naive Bayes Confusion Matrix")
+
+    # Train and evaluate KNN
+    print("\n=== KNN Classification ===")
+    knn_model = train_knn(X_train, y_train)
+    knn_predictions = knn_model.predict(X_test)
+    
+    print("\nKNN Classification Report:")
+    print(classification_report(y_test, knn_predictions, target_names=classes))
+    plot_confusion_matrix(y_test, knn_predictions, "KNN Confusion Matrix")
 
     plt.show()
