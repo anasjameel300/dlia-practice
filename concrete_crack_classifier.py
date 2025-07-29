@@ -12,6 +12,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Parameters
 img_size = 128
@@ -110,6 +111,58 @@ def plot_confusion_matrix(y_true, y_pred, title):
     plt.tight_layout()
     plt.show()
 
+def compare_classifiers(y_test, predictions_dict):
+    """Compare all classifiers and find the best performing one"""
+    print("\n" + "="*60)
+    print("CLASSIFIER COMPARISON AND RESULTS")
+    print("="*60)
+    
+    results = {}
+    
+    for name, y_pred in predictions_dict.items():
+        accuracy = accuracy_score(y_test, y_pred)
+        precision = precision_score(y_test, y_pred, average='weighted')
+        recall = recall_score(y_test, y_pred, average='weighted')
+        f1 = f1_score(y_test, y_pred, average='weighted')
+        
+        results[name] = {
+            'accuracy': accuracy,
+            'precision': precision,
+            'recall': recall,
+            'f1_score': f1
+        }
+        
+        print(f"\n{name.upper()} RESULTS:")
+        print(f"  Accuracy:  {accuracy:.4f}")
+        print(f"  Precision: {precision:.4f}")
+        print(f"  Recall:    {recall:.4f}")
+        print(f"  F1-Score:  {f1:.4f}")
+    
+    # Find the best classifier based on F1-score (most balanced metric)
+    best_classifier = max(results.items(), key=lambda x: x[1]['f1_score'])
+    
+    print("\n" + "="*60)
+    print("🏆 BEST PERFORMING CLASSIFIER")
+    print("="*60)
+    print(f"Winner: {best_classifier[0].upper()}")
+    print(f"F1-Score: {best_classifier[1]['f1_score']:.4f}")
+    print(f"Accuracy: {best_classifier[1]['accuracy']:.4f}")
+    print(f"Precision: {best_classifier[1]['precision']:.4f}")
+    print(f"Recall: {best_classifier[1]['recall']:.4f}")
+    
+    # Create a comparison table
+    print("\n" + "="*80)
+    print("DETAILED COMPARISON TABLE")
+    print("="*80)
+    print(f"{'Classifier':<15} {'Accuracy':<10} {'Precision':<10} {'Recall':<10} {'F1-Score':<10}")
+    print("-" * 80)
+    
+    for name, metrics in results.items():
+        print(f"{name:<15} {metrics['accuracy']:<10.4f} {metrics['precision']:<10.4f} "
+              f"{metrics['recall']:<10.4f} {metrics['f1_score']:<10.4f}")
+    
+    return best_classifier[0], results
+
 
 # Main execution
 if __name__ == "__main__":
@@ -157,5 +210,14 @@ if __name__ == "__main__":
     print("\nKNN Classification Report:")
     print(classification_report(y_test, knn_predictions, target_names=classes))
     plot_confusion_matrix(y_test, knn_predictions, "KNN Confusion Matrix")
+
+    # Compare all classifiers
+    predictions_dict = {
+        "SVM": svm_predictions,
+        "ANN": ann_predictions,
+        "Naive Bayes": nb_predictions,
+        "KNN": knn_predictions
+    }
+    best_classifier_name, results = compare_classifiers(y_test, predictions_dict)
 
     plt.show()
