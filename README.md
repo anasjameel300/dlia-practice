@@ -1,13 +1,13 @@
-# Digital Image Processing Practice Files
+# Digital Image Processing & Machine Learning Practice Files
 
-This repository contains two comprehensive Python practice files for learning digital image processing using OpenCV and other image processing libraries, plus an ANN classifier experiment on an airline flights dataset.
+This repository contains comprehensive Python practice files for learning digital image processing using OpenCV and machine learning with PyTorch.
 
 ## Files Included
 
 - **`practice_1_basic_operations.py`** - Basic image operations
 - **`practice_2_advanced_operations.py`** - Advanced image processing techniques
+- **`ann_classifier.py`** - 3-Layer Artificial Neural Network for classification
 - **`requirements.txt`** - Required Python packages
-- **`ann_classifier.py`** - 3-layer ANN classifier experiments on `airlines_flights_data.csv`
 
 ## Installation
 
@@ -17,8 +17,6 @@ This repository contains two comprehensive Python practice files for learning di
 ```bash
 pip install -r requirements.txt
 ```
-
-3. Ensure the dataset `airlines_flights_data.csv` is present in the project root (it already is).
 
 ## Practice 1: Basic Operations
 
@@ -66,24 +64,35 @@ python practice_2_advanced_operations.py
 - Displays comprehensive visualizations using matplotlib
 - Shows all processed images in interactive plots
 
-## ANN Classifier on Airline Flights Data
+## Practice 3: Artificial Neural Network Classification
 
-Runs binary and multiclass classification using a 3-layer ANN (input → hidden → output) with:
+### Topics Covered:
+1. **3-Layer ANN Architecture** - Configurable hidden layers using scikit-learn MLPClassifier
+2. **Binary Classification** - Expensive vs Cheap flight prices
+3. **Hidden Layer Configurations** - Small (<50 neurons), Large (>100 neurons)
+4. **Learning Rate Experiments** - 0.0001, 0.001, 0.01
+5. **Performance Metrics** - Accuracy, Confusion Matrix, Training Time
+6. **Time Complexity Analysis** - Parameters per second processing
+7. **Data Preprocessing** - Feature scaling, categorical encoding
+8. **Model Evaluation** - Training/validation/test splits
 
-- Hidden units: one configuration < 50 (32) and one > 100 (128)
-- Learning rates: 0.0001, 0.001, 0.01
-- Reports: accuracy, training time (seconds), and approximate parameter count
+### Dataset:
+- **Airlines Flights Data** - 300,153 flight records with 9 features
+- **Classification Task** - Binary classification of flight prices (expensive vs cheap)
+- **Features** - Airline, source/destination cities, departure/arrival times, stops, class, duration, days left
 
-### Running the Experiments
-
+### Running Practice 3:
 ```bash
 python ann_classifier.py
 ```
 
-### Outputs
-
-- Console tables for binary and multiclass tasks
-- `ann_results.csv` saved in the project root with all experiment results
+### Output:
+- Comprehensive experiment results with different configurations
+- Bar plots showing accuracy and training time comparisons
+- Confusion matrices for each configuration
+- Summary table comparing all experiments
+- Time complexity analysis
+- Best configuration identification
 
 ## Features
 
@@ -108,14 +117,20 @@ After completing these practices, you will understand:
 - Different blurring techniques for noise reduction
 - Edge detection algorithms for feature extraction
 - Bitwise operations for binary image processing
+- **3-Layer ANN architecture using scikit-learn MLPClassifier**
+- **Binary classification with neural networks**
+- **Impact of hidden layer sizes on model performance**
+- **Effect of learning rates on training convergence**
+- **Time complexity analysis of neural networks**
+- **Data preprocessing for machine learning**
+- **Model evaluation and comparison techniques**
 
 ## Notes
 
-- All images are displayed using matplotlib for better visualization (for practice scripts)
+- All images are displayed using matplotlib for better visualization
 - The code includes detailed comments explaining each operation
 - Both practice files can be run independently
 - No files are saved to disk - everything is displayed in memory
-- The ANN script reads `airlines_flights_data.csv` from the repository root
 
 ## Troubleshooting
 
