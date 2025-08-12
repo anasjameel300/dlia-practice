@@ -1,12 +1,13 @@
 # Digital Image Processing Practice Files
 
-This repository contains two comprehensive Python practice files for learning digital image processing using OpenCV and other image processing libraries.
+This repository contains two comprehensive Python practice files for learning digital image processing using OpenCV and other image processing libraries, plus an ANN classifier experiment on an airline flights dataset.
 
 ## Files Included
 
 - **`practice_1_basic_operations.py`** - Basic image operations
 - **`practice_2_advanced_operations.py`** - Advanced image processing techniques
 - **`requirements.txt`** - Required Python packages
+- **`ann_classifier.py`** - 3-layer ANN classifier experiments on `airlines_flights_data.csv`
 
 ## Installation
 
@@ -16,6 +17,8 @@ This repository contains two comprehensive Python practice files for learning di
 ```bash
 pip install -r requirements.txt
 ```
+
+3. Ensure the dataset `airlines_flights_data.csv` is present in the project root (it already is).
 
 ## Practice 1: Basic Operations
 
@@ -63,6 +66,25 @@ python practice_2_advanced_operations.py
 - Displays comprehensive visualizations using matplotlib
 - Shows all processed images in interactive plots
 
+## ANN Classifier on Airline Flights Data
+
+Runs binary and multiclass classification using a 3-layer ANN (input → hidden → output) with:
+
+- Hidden units: one configuration < 50 (32) and one > 100 (128)
+- Learning rates: 0.0001, 0.001, 0.01
+- Reports: accuracy, training time (seconds), and approximate parameter count
+
+### Running the Experiments
+
+```bash
+python ann_classifier.py
+```
+
+### Outputs
+
+- Console tables for binary and multiclass tasks
+- `ann_results.csv` saved in the project root with all experiment results
+
 ## Features
 
 - **Automatic Image Generation**: Both scripts create their own sample images, so no external image files are needed
@@ -89,10 +111,11 @@ After completing these practices, you will understand:
 
 ## Notes
 
-- All images are displayed using matplotlib for better visualization
+- All images are displayed using matplotlib for better visualization (for practice scripts)
 - The code includes detailed comments explaining each operation
 - Both practice files can be run independently
 - No files are saved to disk - everything is displayed in memory
+- The ANN script reads `airlines_flights_data.csv` from the repository root
 
 ## Troubleshooting
 

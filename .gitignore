@@ -1,6 +1,7 @@
 # Dataset folders
 Concrete Crack Images dataset/
 Concrete Crack Images 250/
+airlines_flights_data.csv
 
 # Python
 __pycache__/

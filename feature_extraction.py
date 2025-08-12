@@ -32,10 +32,12 @@ def main():
     plt.figure(figsize=(8, 4))
     plt.subplot(1, 2, 1)
     plt.title('Original Image')
-    plt.imshow(gray, cmap='gray')
+    plt.imshow(img_rgb)  # Show color image instead of grayscale
+    plt.axis('off')
     plt.subplot(1, 2, 2)
     plt.title('HOG Features')
     plt.imshow(hog_image, cmap='gray')
+    plt.axis('off')
     plt.show()
     print("HOG feature vector length:", len(features))
 
